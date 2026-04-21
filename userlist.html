@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User List</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f9;}
+
+.nav{
+background:#ff69b4;
+color:white;
+padding:10px;
+}
+
+table{
+width:100%;
+background:white;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+.footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:#ff69b4;
+color:white;
+text-align:center;
+padding:10px;
+}
+
+a{color:#2196F3;text-decoration:none;margin:5px;}
+
+button{
+background:#4CAF50;
+color:white;
+border:none;
+padding:5px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+User List |
+<a href="/dashboard">Dashboard</a> |
+<a href="/create">Create</a>
+</div>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+
+{% for u in users %}
+<tr>
+
+{% if edit_id is defined and loop.index0 == edit_id %}
+
+<form method="POST" action="/update/{{loop.index0}}">
+<td><input name="name" value="{{u.name}}"></td>
+<td><input name="phone" value="{{u.phone}}"></td>
+<td><input name="email" value="{{u.email}}"></td>
+<td>
+<input name="password" value="{{u.password}}" hidden>
+<button>Save</button>
+</td>
+</form>
+
+{% else %}
+
+<td>{{u.name}}</td>
+<td>{{u.phone}}</td>
+<td>{{u.email}}</td>
+<td>
+<a href="/userlist?edit={{loop.index0}}">Edit</a>
+<a href="/delete/{{loop.index0}}">Delete</a>
+</td>
+
+{% endif %}
+
+</tr>
+{% endfor %}
+
+</table>
+
+<div class="footer">Made with 💖</div>
+
+{% if msg %}
+<script>Swal.fire("{{msg}}","","success");</script>
+{% endif %}
+
+</body>
+</html>

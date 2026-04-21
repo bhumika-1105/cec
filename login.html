@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI;
+background:#ffe4ec;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.top{
+position:absolute;
+top:0;
+width:100%;
+background:#ff69b4;
+color:white;
+padding:10px;
+text-align:left;
+font-weight:bold;
+}
+
+.card{
+background:#fff0f5;
+padding:30px;
+width:320px;
+border-radius:20px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.password-box{position:relative;}
+
+.eye{
+position:absolute;
+right:10px;
+top:12px;
+cursor:pointer;
+}
+
+button{
+width:48%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+}
+
+.submit{background:#ff1493;color:white;}
+.clear{background:#ffb6c1;}
+
+.footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:#ff69b4;
+color:white;
+text-align:center;
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">💖 MyApp Login</div>
+
+<div class="card">
+
+<h2>Login 🎀</h2>
+
+<form method="POST">
+
+<input name="username" placeholder="Username" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="phone" pattern="[0-9]{10}" placeholder="Phone" required>
+
+<div class="password-box">
+<input type="password" id="password" name="password" placeholder="Password" required>
+<span class="eye" onclick="toggle()">👁</span>
+</div>
+
+<button class="submit">Login</button>
+<button type="reset" class="clear">Clear</button>
+
+</form>
+
+</div>
+
+<div class="footer">Made with 💖</div>
+
+<script>
+function toggle(){
+let p=document.getElementById("password");
+p.type = (p.type==="password") ? "text" : "password";
+}
+
+{% if msg %}
+Swal.fire("{{msg}}","","success");
+{% endif %}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f9;}
+
+.nav{
+background:#ff69b4;
+color:white;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+
+.avatar{
+width:40px;height:40px;
+border-radius:50%;
+background:white;
+color:#ff1493;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.card{
+background:white;
+width:200px;
+margin:30px;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.count{font-size:40px;color:#4CAF50;}
+
+.footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:#ff69b4;
+color:white;
+text-align:center;
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+<div class="avatar">{{ username[:2].upper() }}</div>
+<div>
+<a href="/create">Create</a>
+<a href="/userlist">Users</a>
+<a href="/logout">Logout</a>
+</div>
+</div>
+
+<a href="/userlist">
+<div class="card">
+<p>Total Users</p>
+<div class="count">{{ user_count }}</div>
+</div>
+</a>
+
+<div class="footer">Made with 💖</div>
+
+{% if msg %}
+<script>Swal.fire("{{msg}}","","success");</script>
+{% endif %}
+
+</body>
+</html>
